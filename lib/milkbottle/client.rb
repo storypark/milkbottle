@@ -1,11 +1,12 @@
 require 'sawyer'
 require 'milkbottle/configurable'
-require 'milkbottle/client/product'
-require 'pry'
+require 'milkbottle/client/products'
+require 'milkbottle/client/users'
 
 module Milkbottle
   class Client
     include Milkbottle::Configurable
+    include Milkbottle::Client::Products
 
     def initialize(options = {})
       # Use options passed in, but fall back to module defaults

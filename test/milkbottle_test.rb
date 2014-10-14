@@ -11,6 +11,14 @@ class MilkbottleTest < Minitest::Test
     end
   end
 
+  def test_it_creates_a_milkbottle_client
+    assert_equal Milkbottle.client.class, Milkbottle::Client
+  end
+
+  def test_it_caches_milkbottle_clients
+    assert_equal Milkbottle.client, Milkbottle.client
+  end
+
   def teardown
     Milkbottle.reset!
   end
