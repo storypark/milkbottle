@@ -1,12 +1,17 @@
 require 'sawyer'
+require 'milkbottle/authentication'
 require 'milkbottle/configurable'
 require 'milkbottle/client/products'
+require 'milkbottle/client/tokens'
 require 'milkbottle/client/users'
 
 module Milkbottle
   class Client
+    include Milkbottle::Authentication
     include Milkbottle::Configurable
     include Milkbottle::Client::Products
+    include Milkbottle::Client::Tokens
+    include Milkbottle::Client::Users
 
     def initialize(options = {})
       # Use options passed in, but fall back to module defaults
@@ -47,7 +52,15 @@ module Milkbottle
       @agent ||= Sawyer::Agent.new(api_endpoint, sawyer_options) do |http|
         http.headers[:content_type] = "application/json"
         http.headers[:user_agent] = user_agent
-        http.headers['X-MILK-API-KEY'] = @api_key
+        if token_authenticated?
+          http.authorization('Bearer', @jwt_token)
+        end
+
+        if app_authenticated?
+          http.headers['X-MILK-API-KEY'] = @api_key
+        else
+          throw "Please supply an api_key or jwt_token"
+        end
       end
     end
 
@@ -58,6 +71,11 @@ module Milkbottle
     def api_key=(api_key)
       reset_agent
       @api_key = api_key
+    end
+
+    def jwt_token=(jwt_token)
+      reset_agent
+      @jwt_token = jwt_token
     end
 
   private
@@ -86,6 +104,7 @@ module Milkbottle
       conn_opts = @connection_options
       conn_opts[:builder] = @middleware if @middleware
       conn_opts[:proxy] = @proxy if @proxy
+      conn_opts[:ssl] = {:verify => false}
       opts[:faraday] = Faraday.new(conn_opts)
 
       opts
