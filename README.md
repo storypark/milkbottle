@@ -36,6 +36,13 @@ or as a standalone client:
 Milkbottle::Client.new(api_key: 'API-KEY')
 ```
 
+### Options
+
+Option | Description | ENV equivalent | Default
+api_key | The API Key perscribed by Milk Books | MILKBOTTLE_API_KEY | nil
+api_endpoint | The endpoint this gem communicates with | MILKBOTTLE_API_ENDPOINT | https://api.staging.milkbooks.com
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/storypark/milkbottle/fork )
