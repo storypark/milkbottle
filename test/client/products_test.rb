@@ -15,7 +15,7 @@ class MilkbottleProductsTest < Minitest::Test
   end
 
   def test_it_gives_back_all_the_products
-    VCR.use_cassette('all_products') do
+    VCR.use_cassette('products') do
       result = @client.products
 
       assert result.kind_of?(Array)

@@ -1,6 +1,7 @@
 require 'sawyer'
 require 'milkbottle/authentication'
 require 'milkbottle/configurable'
+require 'milkbottle/client/libraries'
 require 'milkbottle/client/products'
 require 'milkbottle/client/tokens'
 require 'milkbottle/client/users'
@@ -9,6 +10,7 @@ module Milkbottle
   class Client
     include Milkbottle::Authentication
     include Milkbottle::Configurable
+    include Milkbottle::Client::Libraries
     include Milkbottle::Client::Products
     include Milkbottle::Client::Tokens
     include Milkbottle::Client::Users
@@ -54,9 +56,10 @@ module Milkbottle
         http.headers[:user_agent] = user_agent
         if token_authenticated?
           http.authorization('Bearer', @jwt_token)
-        end
-
-        if app_authenticated?
+        elsif anonymous_authenticated?
+          http.authorization('Bearer', @anonymous_token)
+          http.headers['X-MILK-API-KEY'] = @api_key
+        elsif app_authenticated?
           http.headers['X-MILK-API-KEY'] = @api_key
         else
           throw "Please supply an api_key or jwt_token"
@@ -71,6 +74,11 @@ module Milkbottle
     def api_key=(api_key)
       reset_agent
       @api_key = api_key
+    end
+
+    def anonymous_token=(anonymous_token)
+      reset_agent
+      @anonymous_token = anonymous_token
     end
 
     def jwt_token=(jwt_token)

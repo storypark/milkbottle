@@ -1,12 +1,13 @@
 module Milkbottle
   module Configurable
-    attr_reader :api_key, :connection_options, :jwt_token, :user_agent
+    attr_reader :api_key, :connection_options, :anonymous_token, :jwt_token, :user_agent
     attr_writer :api_endpoint
 
     class << self
 
       def keys
         @keys ||= [
+          :anonymous_token,
           :api_endpoint,
           :api_key,
           :connection_options,

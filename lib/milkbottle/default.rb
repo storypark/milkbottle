@@ -44,6 +44,10 @@ module Milkbottle
         ENV['MILKBOTTLE_MEDIA_TYPE'] || MEDIA_TYPE
       end
 
+      def anonymous_token
+        ENV['MILKBOTTLE_ANONYMOUS_TOKEN']
+      end
+
       def jwt_token
         ENV['MILKBOTTLE_JWT_TOKEN']
       end

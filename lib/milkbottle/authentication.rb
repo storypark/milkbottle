@@ -4,6 +4,10 @@ module Milkbottle
       token_authenticated? || app_authenticated?
     end
 
+    def anonymous_authenticated?
+      !!@anonymous_token
+    end
+
     def token_authenticated?
       !!@jwt_token
     end
