@@ -1,15 +1,16 @@
 module Milkbottle
   module Configurable
-    attr_reader :anonymous_token,
-                :api_key,
-                :connection_options,
-                :expiry_in_hours,
-                :external_auth_issuer,
-                :external_auth_key,
-                :jwt_token,
-                :user_agent
+    attr_reader   :anonymous_token,
+                  :connection_options,
+                  :expiry_in_hours,
+                  :jwt_token,
+                  :user_agent
 
-    attr_writer :api_endpoint
+    attr_writer   :api_endpoint
+
+    attr_accessor :api_key,
+                  :external_auth_key,
+                  :external_auth_issuer
 
 
     class << self

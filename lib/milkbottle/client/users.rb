@@ -11,7 +11,7 @@ module Milkbottle
       end
 
       def generate_external_user_token(external_id, email)
-        throw "Please set external_auth_key and/or external_auth_issuer" unless external_authentication_available?
+        ensure_external_auth!
 
         self.jwt_token = JWT.encode({iss: external_auth_issuer, aud: audience, exp: Time.now + expiry_in_hours, sub: external_id, email: email}, external_auth_key)
       end

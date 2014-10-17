@@ -19,5 +19,9 @@ module Milkbottle
     def external_authentication_available?
       !!@external_auth_issuer && !!@external_auth_key
     end
+
+    def ensure_external_auth!
+      throw "Please set external_auth_key and/or external_auth_issuer" unless external_authentication_available?
+    end
   end
 end
