@@ -10,8 +10,10 @@ module Milkbottle
         post("/user", options.merge({EmailAddress: email, Password: password, ExternalUserId: external_id}))
       end
 
-      def generate_external_user_token(issuer, audience, external_id, email)
-        JWT.encode({iss: :issuer, aud: audience, exp: Time.now + expiry_in_hours, sub: external_id, email: email}, "secret")
+      def generate_external_user_token(external_id, email)
+        throw "Please set external_auth_key and/or external_auth_issuer" unless external_authentication_available?
+
+        self.jwt_token = JWT.encode({iss: external_auth_issuer, aud: audience, exp: Time.now + expiry_in_hours, sub: external_id, email: email}, external_auth_key)
       end
     end
   end

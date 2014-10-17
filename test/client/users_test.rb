@@ -29,8 +29,8 @@ class MilkbottleUsersTest < Minitest::Test
   end
 
   def test_it_generates_an_external_user_token
-    result = @client.generate_external_user_token('issuer', 'audience', 'external_id', 'email')
+    result = @client.generate_external_user_token('external_id', 'email')
     assert !result.nil?
-    puts result
+    assert_equal result, @client.jwt_token
   end
 end

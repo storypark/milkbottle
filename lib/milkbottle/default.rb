@@ -34,6 +34,14 @@ module Milkbottle
         ENV['MILKBOTTLE_API_ENDPOINT'] || API_ENDPOINT
       end
 
+      def anonymous_token
+        ENV['MILKBOTTLE_ANONYMOUS_TOKEN']
+      end
+
+      def jwt_token
+        ENV['MILKBOTTLE_JWT_TOKEN']
+      end
+
       def connection_options
         {
           :headers => {
@@ -51,12 +59,12 @@ module Milkbottle
         ENV['MILKBOTTLE_EXPIRY_IN_HOURS'] || EXPIRY_IN_HOURS
       end
 
-      def anonymous_token
-        ENV['MILKBOTTLE_ANONYMOUS_TOKEN']
+      def external_auth_key
+        ENV['MILKBOTTLE_EXTERNAL_AUTH_KEY']
       end
 
-      def jwt_token
-        ENV['MILKBOTTLE_JWT_TOKEN']
+      def external_auth_issuer
+        ENV['MILKBOTTLE_EXTERNAL_AUTH_ISSUER']
       end
 
       def middleware

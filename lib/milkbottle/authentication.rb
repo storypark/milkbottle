@@ -15,5 +15,9 @@ module Milkbottle
     def app_authenticated?
       !!@api_key
     end
+
+    def external_authentication_available?
+      !!@external_auth_issuer && !!@external_auth_key
+    end
   end
 end

@@ -4,6 +4,8 @@ module Milkbottle
                 :api_key,
                 :connection_options,
                 :expiry_in_hours,
+                :external_auth_issuer,
+                :external_auth_key,
                 :jwt_token,
                 :user_agent
 
@@ -19,6 +21,8 @@ module Milkbottle
           :api_key,
           :connection_options,
           :expiry_in_hours,
+          :external_auth_issuer,
+          :external_auth_key,
           :jwt_token,
           :user_agent
         ]
@@ -40,6 +44,10 @@ module Milkbottle
 
     def api_endpoint
       File.join(@api_endpoint, "")
+    end
+
+    def audience
+      URI(@api_endpoint).host
     end
 
     private
