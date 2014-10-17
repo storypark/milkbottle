@@ -2,15 +2,18 @@ require 'milkbottle/version'
 
 module Milkbottle
   module Default
-    API_ENDPOINT = "https://api.staging.milkbooks.com".freeze
+    API_ENDPOINT    = "https://api.staging.milkbooks.com".freeze
 
-    USER_AGENT   = "Milkbottle Ruby Gem #{Milkbottle::VERSION}".freeze
+    EXPIRY_IN_HOURS = 24
 
-    MEDIA_TYPE   = "application/json"
+    MEDIA_TYPE      = "application/json"
 
-    MIDDLEWARE = Faraday::RackBuilder.new do |builder|
+    MIDDLEWARE      = Faraday::RackBuilder.new do |builder|
       builder.adapter Faraday.default_adapter
     end
+
+    USER_AGENT      = "Milkbottle Ruby Gem #{Milkbottle::VERSION}".freeze
+
     class << self
 
       # Configuration options
@@ -42,6 +45,10 @@ module Milkbottle
 
       def default_media_type
         ENV['MILKBOTTLE_MEDIA_TYPE'] || MEDIA_TYPE
+      end
+
+      def expiry_in_hours
+        ENV['MILKBOTTLE_EXPIRY_IN_HOURS'] || EXPIRY_IN_HOURS
       end
 
       def anonymous_token

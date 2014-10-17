@@ -18,9 +18,9 @@ class MilkbottleProductsTest < Minitest::Test
     VCR.use_cassette('products') do
       result = @client.products
 
-      assert result.kind_of?(Array)
+      assert result[:Products].kind_of?(Array)
 
-      assert_equal 17, result.length
+      assert_equal 17, result[:Products].length
     end
   end
 end

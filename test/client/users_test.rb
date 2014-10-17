@@ -22,9 +22,15 @@ class MilkbottleUsersTest < Minitest::Test
   end
 
   def test_it_creates_an_internal_user
-    VCR.use_cassette('create_internal_user') do
-      result = @client.create_internal_user('test@example.com', 'password')
-      assert !result.nil?
-    end
+    # VCR.use_cassette('create_internal_user') do
+    #   result = @client.create_internal_user('test@example.com', 'password')
+    #   assert !result.nil?
+    # end
+  end
+
+  def test_it_generates_an_external_user_token
+    result = @client.generate_external_user_token('issuer', 'audience', 'external_id', 'email')
+    assert !result.nil?
+    puts result
   end
 end
