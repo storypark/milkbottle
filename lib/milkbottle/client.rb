@@ -1,6 +1,7 @@
 require 'sawyer'
 require 'milkbottle/authentication'
 require 'milkbottle/configurable'
+require 'milkbottle/jwt_token'
 require 'milkbottle/client/libraries'
 require 'milkbottle/client/products'
 require 'milkbottle/client/tokens'
