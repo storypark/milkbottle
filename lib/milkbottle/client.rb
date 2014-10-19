@@ -55,7 +55,7 @@ module Milkbottle
         http.headers[:content_type] = "application/json"
         http.headers[:user_agent] = user_agent
         if token_authenticated?
-          http.authorization('Bearer', @jwt_token)
+          http.authorization('Bearer', @jwt_token.encode(external_auth_key))
         elsif anonymous_authenticated?
           http.authorization('Bearer', @anonymous_token)
           http.headers['X-MILK-API-KEY'] = @api_key

@@ -13,7 +13,8 @@ module Milkbottle
       def generate_external_user_token(external_id, email)
         ensure_external_auth!
 
-        self.jwt_token = JWT.encode({iss: external_auth_issuer, aud: audience, exp: Time.now + expiry_in_hours, sub: external_id, email: email}, external_auth_key)
+        token = Milkbottle::JwtToken.new({external_auth_issuer: external_auth_issuer, audience: audience, external_id: external_id, email: email})
+        self.jwt_token = token
       end
     end
   end
