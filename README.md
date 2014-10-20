@@ -26,7 +26,9 @@ TODO: Either configure by an initalizer:
 
 ```ruby
 Milkbottle.configure do |c|
-  c.api_key = 'API-KEY'
+  c.api_key              = 'API_KEY'
+  c.external_auth_key    = 'AUTH_KEY'
+  c.external_auth_issuer = Rails.env.production? ? PROD_URL : TEST_URL
 end
 ```
 
