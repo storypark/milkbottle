@@ -10,7 +10,7 @@ module Milkbottle
       end
 
       def create_product_builder(library_ids, options ={})
-        post "/library/builder", otions.merge({Guids: library_ids})
+        post "/library/builder", options.merge({Guids: library_ids})
       end
     end
   end
