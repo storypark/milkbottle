@@ -4,8 +4,6 @@ module Milkbottle
   module Default
     API_ENDPOINT    = "https://api.staging.milkbooks.com".freeze
 
-    EXPIRY_IN_HOURS = 24
-
     MEDIA_TYPE      = "application/json"
 
     MIDDLEWARE      = Faraday::RackBuilder.new do |builder|
@@ -53,10 +51,6 @@ module Milkbottle
 
       def default_media_type
         ENV['MILKBOTTLE_MEDIA_TYPE'] || MEDIA_TYPE
-      end
-
-      def expiry_in_hours
-        ENV['MILKBOTTLE_EXPIRY_IN_HOURS'] || EXPIRY_IN_HOURS
       end
 
       def external_auth_key
