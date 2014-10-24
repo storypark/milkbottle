@@ -18,7 +18,7 @@ module Milkbottle
     end
 
     def expiry
-      @expiry ||= (Time.now + 3600)
+      @expiry ||= (Time.now + 3600 * 24)
     end
 
     def expired?
