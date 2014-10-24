@@ -9,7 +9,7 @@ module Milkbottle
     end
 
     def to_hash
-      { iss: external_auth_issuer, aud: audience, exp: expiry, sub: subject, email: email }
+      { iss: external_auth_issuer, aud: audience, exp: expiry.to_i, sub: subject, email: email }
     end
 
     def encode(external_auth_key)
