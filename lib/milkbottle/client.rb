@@ -3,6 +3,8 @@ require 'milkbottle/authentication'
 require 'milkbottle/configurable'
 require 'milkbottle/jwt_token'
 require 'milkbottle/client/libraries'
+require 'milkbottle/client/orders'
+require 'milkbottle/client/portals'
 require 'milkbottle/client/products'
 require 'milkbottle/client/tokens'
 require 'milkbottle/client/users'
@@ -12,6 +14,8 @@ module Milkbottle
     include Milkbottle::Authentication
     include Milkbottle::Configurable
     include Milkbottle::Client::Libraries
+    include Milkbottle::Client::Orders
+    include Milkbottle::Client::Portals
     include Milkbottle::Client::Products
     include Milkbottle::Client::Tokens
     include Milkbottle::Client::Users
