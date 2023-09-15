@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock",  "~> 1.19"
 
   spec.add_dependency "sawyer", "~> 0.5"
-  spec.add_dependency "jwt",    "~> 1.0"
+  spec.add_dependency "jwt",    "~> 2.7"
 end
