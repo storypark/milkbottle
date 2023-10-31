@@ -1,3 +1,11 @@
+# ⛔️ DEPRECATED / ARCHIVED ⛔️
+
+This repository is now deprecated and has been archived.
+
+The Milk Bottle API that this was a wrapper for has been removed.
+
+See [RURU-758](https://storypark.atlassian.net/browse/RURU-768) and this [slack conversation](https://storypark.slack.com/archives/C024P57JWHF/p1698706145046359?thread_ts=1698705741.932329&cid=C024P57JWHF) for more details.
+
 # Milkbottle
 
 A ruby gem to wrap the Milkbooks API.
